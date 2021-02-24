@@ -4,25 +4,52 @@ import React, { Component } from 'react';
 
 class Carousel extends Component {
     
-    
     state = {
-        currentImage: 'https://randomuser.me/api/portraits/women/1.jpg'
+        index: 0
     }
     
     clickLeft = () => {
-        this.setState({currentImage: this.props.imgs[1]})
+
+        if (this.state.index === 0) {
+            
+            this.setState((state, props) => ({
+                index: 3
+            })
+            )
+        }
+    
+    
+        if (this.state.index) {
+            this.setState((state, props) => ({
+                index: state.index - 1
+            }))
+        }
     }
 
-    render() {
-        console.log(this.props.imgs[0]);
+        clickRight = () => {
+        
+            if (this.state.index === 3) {
+                this.setState((state, props) => ({
+                    index: 0
+                }))
+            }
+                    
+            if (this.state.index < 3) {
+                this.setState((state, props)=> ({
+                    index: state.index + 1
+                })
+                )}        
+        }
 
+    render() {
+    
         return (
             <div>
                 <button onClick={this.clickLeft} >Left</button>
-                <img src={this.state.currentImage} alt="sliding pictures"/>
-                <button>Right</button>
+                <img src={this.props.imgs[this.state.index]} alt="sliding pictures"/>
+                <button onClick={this.clickRight}>Right</button>
             </div>
-        );
+        )
     }
 }
 
