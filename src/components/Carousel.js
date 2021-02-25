@@ -9,7 +9,8 @@ class Carousel extends Component {
     }
     
     clickLeft = () => {
-
+        console.log(this.props)
+        
         if (this.state.index === 0) {
             
             this.setState((state, props) => ({
